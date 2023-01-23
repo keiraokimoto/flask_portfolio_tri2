@@ -83,8 +83,10 @@ class Ingredient(db.Model):
             "id": self.foodID,
             "type": self.type,
             "amount": self.amount,
-            "unit": self.unit
+            "unit": self.unit,
+            "posts": [post.read() for post in self.posts]
         }
+
 
 
 class Food(db.Model):
