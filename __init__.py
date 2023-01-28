@@ -1,4 +1,5 @@
 from flask import Flask
+from flask_cors import CORS
 from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
@@ -11,6 +12,7 @@ These object can be used throughout project.
 
 # Setup of key Flask object (app)
 app = Flask(__name__)
+CORS(app)
 # Setup SQLAlchemy object and properties for the database (db)
 dbURI = 'sqlite:////volumes/flask_portfolio.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
