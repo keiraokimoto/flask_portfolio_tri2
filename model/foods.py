@@ -83,8 +83,7 @@ class Ingredient(db.Model):
             "id": self.foodID,
             "type": self.type,
             "amount": self.amount,
-            "unit": self.unit,
-            "posts": [post.read() for post in self.posts]
+            "unit": self.unit
         }
 
 
@@ -95,8 +94,8 @@ class Food(db.Model):
     # Define the User schema with "vars" from object
     id = db.Column(db.Integer, primary_key=True)
     _name = db.Column(db.String(255), unique=True, nullable=False)
-    _directions = db.Column(db.String(500), unique=False, nullable=False)
-
+    _directions = db.Column(db.String(1500), unique=False, nullable=False)
+    _description = db.Column(db.String(500), unique=False, nullable=True)
     # Defines a relationship between User record and Notes table, one-to-many (one user to many notes)
     ingredients = db.relationship("Ingredient", cascade='all, delete', backref='foods', lazy=True)
 
@@ -129,6 +128,16 @@ class Food(db.Model):
     def is_directions(self, directions):
         return self._directions == directions
     
+     # a getter method, extracts email from object
+    @property
+    def description(self):
+        return self._description
+    
+    # a setter function, allows name to be updated after initial object creation
+    @directions.setter
+    def description(self, description):
+        self._description = description
+        
     # output content using str(object) in human readable form, uses getter
     def __str__(self):
         return f'name: "{self.name}", id: "{self.name}", directions: "{self.directions}"'
@@ -151,6 +160,7 @@ class Food(db.Model):
             db.session.add(self)  # add prepares to persist person object to Users table
             db.session.commit()  # SqlAlchemy "unit of work pattern" requires a manual commit
             print('id in create', self.id)
+            
             return self
         except IntegrityError  as e:
             print('someting wrong with adding food: ', e)
@@ -160,19 +170,19 @@ class Food(db.Model):
     # CRUD read converts self to dictionary
     # returns dictionary
     def read(self):
-        
         return {
             "id": self.id,
             "name": self.name,
             "directions": self.directions,
+            "ingredients": [ingredient.read() for ingredient in self.ingredients]
         }
 
     # CRUD update: updates user name, password, phone
     # returns self
-    def update(self, name=""):
+    def update(self):
         """only updates values with length"""
-        if len(name) > 0:
-            self.name = name
+        print(self)
+        print('update')
         db.session.commit()
         return self
 
@@ -181,6 +191,14 @@ class Food(db.Model):
     def delete(self):
         db.session.delete(self)
         db.session.commit()
+        return None
+    @staticmethod
+    def getRecipeByName(recname):
+        recs = db.session.query(Food).filter(Food._name == recname)
+        for r in recs:
+            # Should be just 1 rec matched
+            return r
+        
         return None
 
 """Database Creation and Testing """

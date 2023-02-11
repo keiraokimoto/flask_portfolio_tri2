@@ -1,7 +1,8 @@
 from flask import Blueprint, request, jsonify
 from flask_restful import Api, Resource # used for REST API building
-
-from model.foods import Food
+import json
+from model.foods import Food, Ingredient
+from types import SimpleNamespace as Namespace
 
 jpFood_api = Blueprint('jpFood_api', __name__,
                    url_prefix='/api/jpFood')
@@ -10,29 +11,43 @@ jpFood_api = Blueprint('jpFood_api', __name__,
 api = Api(jpFood_api)
 
 class jpFoodAPI:        
-    class _Get(Resource):
+    class _SaveRecipe(Resource):
         def post(self):
+            print(request.json)
             ''' Read data for json body '''
             body = request.get_json()
             
+            rec = Food.getRecipeByName(body["name"])
+            iIngreds = body["ingredients"]
+            ingredients = []
+            foodId = rec.id if rec != None else  0
+            for ing in iIngreds:
+                x = ing["type"]
+                print(x)
+                ingredients.append(Ingredient( foodId, type=ing["type"], amount=int(ing["amount"]), unit=ing["unit"]))
+            
+            rec.ingredients = ingredients
+            if (rec == None):
+                rec = Food(body["name"], body["directions"])
+                rec.create()
+                print('Create new recipe')
+            else:
+                rec.directions = body["directions"]
+                rec.description = body["description"]
+                rec.update()
+                print("Update existing recipe") 
+           
+            print(rec)
+           
+
             ''' Avoid garbage in, error checking '''
             # validate name
-            foodName = body.get('Food')
+            foodName = body.get('name')
             if foodName is None:
                 return {'message': f'Food is missing, please select a food.'}, 210
             # validate uid
             
-            ''' Additional garbage error checking '''
-            # set password if provided
-            foodPortions = body.get('Food')
-            if foodPortions is None:
-                return {'message': f'Portions are missing, please input portions.'}, 210
-            # convert to date type
-            
-            ''' #2: Key Code block to add user to database '''
-            # create user in database
-            foods = foods.get('Food')
-            # success returns json of user
+            return rec.read()
 
     class _Read(Resource):
         def get(self):
@@ -41,5 +56,5 @@ class jpFoodAPI:
             return jsonify(json_ready)  # jsonify creates Flask response object, more specific to APIs than json.dumps
 
     # building RESTapi endpoint
-    api.add_resource(_Get, '/get')
+    api.add_resource(_SaveRecipe, '/')
     api.add_resource(_Read, '/')
