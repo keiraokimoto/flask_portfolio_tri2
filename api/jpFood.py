@@ -26,17 +26,18 @@ class jpFoodAPI:
                 print(x)
                 ingredients.append(Ingredient( foodId, type=ing["type"], amount=int(ing["amount"]), unit=ing["unit"]))
             
-            rec.ingredients = ingredients
             if (rec == None):
                 rec = Food(body["name"], body["directions"])
+                rec.ingredients = ingredients
+                rec.directions = body["directions"]
                 rec.create()
                 print('Create new recipe')
             else:
+                rec.ingredients = ingredients
                 rec.directions = body["directions"]
                 rec.description = body["description"]
                 rec.update()
                 print("Update existing recipe") 
-           
             print(rec)
            
 
@@ -55,6 +56,22 @@ class jpFoodAPI:
             json_ready = [food.read() for food in foods]  # prepare output in json
             return jsonify(json_ready)  # jsonify creates Flask response object, more specific to APIs than json.dumps
 
+    class _Delete(Resource): 
+        def post(self):
+            print(request.json)
+            body = request.get_json()
+            
+            rec = Food.getRecipeByName(body["name"])
+            if rec == None:
+                return {
+                    'message': f"'{body['name']}' location does not exist."
+                }
+            else:
+                rec.delete()
+                return True
+
+
     # building RESTapi endpoint
     api.add_resource(_SaveRecipe, '/')
     api.add_resource(_Read, '/')
+    api.add_resource(_Delete, '/delete')
