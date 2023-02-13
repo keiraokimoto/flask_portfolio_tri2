@@ -39,16 +39,31 @@ class jpFoodAPI:
                 rec.update()
                 print("Update existing recipe") 
             print(rec)
-           
-
-            ''' Avoid garbage in, error checking '''
-            # validate name
-            foodName = body.get('name')
-            if foodName is None:
-                return {'message': f'Food is missing, please select a food.'}, 210
-            # validate uid
             
-            return rec.read()
+    class _SavePortions(Resource):
+        def post(self):
+            print(request.json)
+            ''' Read data for json body '''
+            body = request.get_json()
+            
+            portionReturn = {
+                "name": body["name"],
+                "description": body["description"],
+                "ingredients": [],
+                "directions": body["directions"],
+                        }
+            
+            rec = Food.getRecipeByName(body["name"])
+            iIngreds = body["ingredients"]
+            iIngredsPortion = body["portions"]
+            for ing in iIngreds:
+                a = ing["amount"]
+                print(iIngredsPortion)
+                portionAmnt = a * iIngredsPortion
+                ing["amount"] = portionAmnt
+               
+                portionReturn["ingredients"].append(ing)
+            return portionReturn
 
     class _Read(Resource):
         def get(self):
@@ -73,5 +88,6 @@ class jpFoodAPI:
 
     # building RESTapi endpoint
     api.add_resource(_SaveRecipe, '/')
+    api.add_resource(_SavePortions, '/portions')
     api.add_resource(_Read, '/')
     api.add_resource(_Delete, '/delete')

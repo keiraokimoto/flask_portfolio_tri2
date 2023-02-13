@@ -207,7 +207,7 @@ recipeList = []
 def initFoods():
     """Create database and tables"""
     db.create_all()
-    print('INIT FOOD')
+    
     # TO DO: Load from Json docmument (this is only for testing)
     """Tester data for table"""
     # f1 = Food(name='Shoyu Ramen', directions='ajkddmsd')
@@ -215,22 +215,19 @@ def initFoods():
     # f3 = Food(name='Yakisoba', directions='sadjsdasa')
     # put user objects in list for convenience
     recipes = loadRecipes()
-    print(len(recipes))
+    
     foods = recipes["Recipes"]
     print(len(foods))
     """Builds sample user/note(s) data"""
     for rec in foods:
         try:
-            print("Check", rec)
+            
             '''add a few 1 to 4 notes per user'''
             food = Food(rec["Name"] + "-othery", "need array fordirec") # rec["Directions"])
-            print('create food ', food)
             for ing in rec["Ingredients"]:
-                print("ING test", ing)
                 food.ingredients.append(Ingredient(food.id, type=ing["type"], amount=int(ing["amount"]), unit=ing["unit"]))
             '''add user/post data to table'''
             s = food.create()
-            print('done with s ', s)
         except IntegrityError:
             '''fails with bad or duplicate data'''
             db.session.remove()
