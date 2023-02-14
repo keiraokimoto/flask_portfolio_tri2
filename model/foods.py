@@ -5,13 +5,47 @@ import json
 
 from __init__ import app, db
 from sqlalchemy.exc import IntegrityError
+
 from werkzeug.security import generate_password_hash, check_password_hash
+from sqlalchemy import ARRAY,String 
+
 
 # Define the User class to manage actions in the 'users' table
 # -- Object Relational Mapping (ORM) is the key concept of SQLAlchemy
 # -- a.) db.Model is like an inner layer of the onion in ORM
 # -- b.) User represents data we want to store, something that is built on db.Model
 # -- c.) SQLAlchemy ORM is layer on top of SQLAlchemy Core, then SQLAlchemy engine, SQL
+
+class Direction(db.Model):
+    __tablename__ = 'Direction'
+
+    id = db.Column(db.Integer, primary_key=True)
+    _step = db.Column(db.String(500), unique=False, nullable=False)
+
+    # Defines a relationship between User record and Notes table, one-to-many (one user to many notes)
+    foodID = db.Column(db.Integer, db.ForeignKey('foods.id'))
+
+    def __init__(self, id, step):
+        self.foodID = id
+        self._step = step
+    
+    @property
+    def step(self):
+        return self._step
+    
+    # a setter function, allows name to be updated after initial object creation
+    @step.setter
+    def step(self, step):
+        self._step = step
+
+    def is_step(self, step):
+        return self._step == step
+
+    def read(self):
+        return {
+            "id": self.foodID,
+            "step": self.step,
+        }
 
 class Ingredient(db.Model):
     __tablename__ = 'ingredients'
@@ -94,15 +128,14 @@ class Food(db.Model):
     # Define the User schema with "vars" from object
     id = db.Column(db.Integer, primary_key=True)
     _name = db.Column(db.String(255), unique=True, nullable=False)
-    _directions = db.Column(db.String(1500), unique=False, nullable=False)
+    directions = db.relationship("Direction", cascade='all, delete', backref='foods', lazy=True)
     _description = db.Column(db.String(500), unique=False, nullable=True)
     # Defines a relationship between User record and Notes table, one-to-many (one user to many notes)
     ingredients = db.relationship("Ingredient", cascade='all, delete', backref='foods', lazy=True)
-
+    
     # constructor of a User object, initializes the instance variables within object (self)
-    def __init__(self, name, directions):
+    def __init__(self, name):
         self._name = name    # variables with self prefix become part of the object, 
-        self._directions = directions
 
     # a name getter method, extracts name from object
     @property
@@ -115,18 +148,6 @@ class Food(db.Model):
         self._name = name
     
     # a getter method, extracts email from object
-    @property
-    def directions(self):
-        return self._directions
-    
-    # a setter function, allows name to be updated after initial object creation
-    @directions.setter
-    def directions(self, directions):
-        self._directions = directions
-        
-    # check if uid parameter matches user id in object, return boolean
-    def is_directions(self, directions):
-        return self._directions == directions
     
      # a getter method, extracts email from object
     @property
@@ -134,7 +155,7 @@ class Food(db.Model):
         return self._description
     
     # a setter function, allows name to be updated after initial object creation
-    @directions.setter
+    @description.setter
     def description(self, description):
         self._description = description
         
@@ -174,7 +195,8 @@ class Food(db.Model):
             "id": self.id,
             "name": self.name,
             "directions": self.directions,
-            "ingredients": [ingredient.read() for ingredient in self.ingredients]
+            "ingredients": [ingredient.read() for ingredient in self.ingredients],
+            "directions": [direction.read() for direction in self.directions]
         }
 
     # CRUD update: updates user name, password, phone
@@ -218,20 +240,31 @@ def initFoods():
     
     foods = recipes["Recipes"]
     print(len(foods))
+    
     """Builds sample user/note(s) data"""
     for rec in foods:
         try:
             
             '''add a few 1 to 4 notes per user'''
-            food = Food(rec["Name"] + "-othery", "need array fordirec") # rec["Directions"])
+            dirs = rec["Directions"]
+            print(dirs)
+            
+            food = Food(rec["Name"]) 
             for ing in rec["Ingredients"]:
                 food.ingredients.append(Ingredient(food.id, type=ing["type"], amount=float(ing["amount"]), unit=ing["unit"]))
+            
+            for step in rec["Directions"]:
+                food.directions.append(Direction(food.id, step))
+
+
             '''add user/post data to table'''
             s = food.create()
         except IntegrityError:
             '''fails with bad or duplicate data'''
             db.session.remove() 
             print(f"Records exist, duplicate email, or error: {food.uid}")
+
+
             
 def loadRecipes():
     SITE_ROOT = os.path.realpath(os.path.dirname(__file__))
