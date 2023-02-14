@@ -1,22 +1,180 @@
 {
   "Recipes": [
-    {
-      "Name": "Shoyu Ramen",
-      "Description": "asdjosmdksd",
-      "Ingredients": [
-        {
-          "type": "sugar",
-          "amount": "2",
-          "unit": "teaspoons"
-        }
-      ],
-      "Directions": [
-        {
-          "Step 1:": "words",
-          "Step 2:": "words2"
-        }
-      ]
-    },
+  {
+    "Name": "Shoyu Ramen",
+    "Description": "",
+    "Ingredients": [
+      {
+        "type": "Chicken Dashi (Stock)",
+        "amount": "8",
+        "unit": "cups"
+      },
+      {
+        "type": "low-sodium chicken broth",
+        "amount": "8",
+        "unit": "cups"
+      },
+      {
+        "type": "dried shiitake mushrooms",
+        "amount": "16",
+        "unit": "total"
+      },
+      {
+        "type": "kombu (kelp)",
+        "amount": "30",
+        "unit": "grams"
+      },
+      {
+        "type": "dried bonito flakes",
+        "amount": "20",
+        "unit": "grams"
+      },
+      {
+        "type": "low-sodium soy sauce",
+        "amount": "1.25",
+        "unit": "cups"
+      },
+      {
+        "type": "mirin",
+        "amount": "1.25",
+        "unit": "cups"
+      },
+      {
+        "type": "sake",
+        "amount": "0.5",
+        "unit": "cups"
+      },
+      {
+        "type": "water",
+        "amount": "1.5",
+        "unit": "cups"
+      },
+      {
+        "type": "granulated sugar",
+        "amount": "0.25",
+        "unit": "cups"
+      },
+      {
+        "type": "packed brown sugar",
+        "amount": "2",
+        "unit": "tbsp."
+      },
+      {
+        "type": "fresh ginger",
+        "amount": "1",
+        "unit": "inch piece"
+      },
+      {
+        "type": "garlic",
+        "amount": "3",
+        "unit": "cloves"
+      },
+      {
+        "type": "green onions",
+        "amount": "3",
+        "unit": "total"
+      },
+      {
+        "type": "pork belly",
+        "amount": "1",
+        "unit": "lb."
+      },
+      {
+        "type": "cold large eggs",
+        "amount": "4",
+        "unit": "total"
+      },
+      {
+        "type": "reserved chashu-tare liquid",
+        "amount": "2.5",
+        "unit": "cups"
+      },
+      {
+        "type": "garlic",
+        "amount": "8",
+        "unit": "cloves"
+      },
+      {
+        "type": "canola oil",
+        "amount": "0.5",
+        "unit": "cups"
+      },
+      {
+        "type": "ground chili or 1 1/2 tbsp. crushed red pepper flakes",
+        "amount": "1",
+        "unit": "tbsp."
+      },
+      {
+        "type": "sesame seeds",
+        "amount": "2",
+        "unit": "tsp."
+      },
+      {
+        "type": "fresh ramen noodles",
+        "amount": "4",
+        "unit": "oz."
+      },
+      {
+        "type": "chicken dashi",
+        "amount": "1.5",
+        "unit": "cups"
+      },
+      {
+        "type": "shiitake mushrooms",
+        "amount": "2",
+        "unit": "sliced"
+      },
+      {
+        "type": "tare",
+        "amount": "3",
+        "unit": "tablespoons or more to taste"
+      },
+      {
+        "type": "chashu",
+        "amount": "2",
+        "unit": "slices"
+      },
+      {
+        "type": "nitamago",
+        "amount": "1",
+        "unit": "halved"
+      },
+      {
+        "type": "green onion",
+        "amount": "1",
+        "unit": "white and light green parts only, very thinly sliced"
+      },
+      {
+        "type": "la-yu",
+        "amount": "2",
+        "unit": "teaspoons"
+      },
+      {
+        "type": "Nori",
+        "amount": "1",
+        "unit": "optional"
+      }
+        ],
+          "Directions": [
+              {
+            "Step 1:": "In a medium saucepan over medium heat, bring chicken broth to a bare simmer. Remove from heat and let cool 2 minutes. Add in mushrooms and kombu (kelp) and let steep 5 minutes. Then, add in bonito and let steep 5 more minutes. Strain and save solids for nitamago process and serving.",
+            "Step 2:": "Store dashi chilled, up to 1 week.",
+            "Step 3:": "In a medium saucepan over medium heat, bring all ingredients except pork to a low simmer and reduce heat to low.",
+            "Step 4:": "Meanwhile, in another medium pot over medium heat, bring pork and 6 cups water to a low simmer. Drain immediately and gently rinse pork.",
+            "Step 5:": "Place pork in tare pot and bring to a simmer. Cover and continue to cook on low until tender, turning pork occasionally, about 1 hour 20 minutes.",
+            "Step 6:": "Let cool for 20 minutes, then strain and reserve liquid for serving. Refrigerate pork and remaining liquid separately. Slice pork before serving, lightly torched, if desired.",
+            "Step 7:": "In a medium saucepan over high heat, bring 6 cups water to a rolling boil. Carefully prick rounded bottoms of each egg with a pin. Gently lower eggs into pot with a slotted spoon, then reduce heat to medium-low and simmer eggs for 6 minutes. Drain.",
+            "Step 8:": "Transfer eggs to an ice bath and let rest for 5 minutes. Thoroughly crack eggshells very gently, knocking one egg against another, then return to ice bath for 10 more minutes. Peel carefully.",
+            "Step 9:": "Place eggs in a medium bowl and pour reserved pork-marinade liquid over. Weigh down eggs with reserved spent kombu (kelp) to fully immerse in liquid. Let marinate in the refrigerator for at least 4 hours, up to 12 hours.",
+            "Step 10:": "In a small saucepan over the lowest possible heat, simmer garlic in oil until tender and translucent, stirring occasionally, about 15 minutes. Keep the heat level low enough to avoid frying the garlic.",
+            "Step 11:": "Remove from heat and immediately stir in chili. Let rest 2 minutes, then stir in sesame.",
+            "Step 12:": "Once completely cool, store refrigerated in a closed container for up to 2 weeks.",
+            "Step 13:": "In a pot of salted boiling water, cook ramen, stirring with tongs or chopsticks until al dente, about 1 minute. (If using instant ramen, discard seasoning packet and follow packet instructions to cook until al dente.) Drain well.",
+            "Step 14:": "In a small saucepan over medium heat, warm dashi and shiitake until barely simmering. Cook for 1 minute and remove from heat. Set shiitake aside.",
+            "Step 15:": "Add dashi, tare, and noodles to serving bowl. Top with chashu, nitamago, shiitake, green onion, a drizzle of la-yu, and nori, if using."
+            }
+        ]
+  },
     {
       "Name": "Tonkatsu",
       "Description": "asdjosmdksd",
