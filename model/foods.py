@@ -18,7 +18,7 @@ class Ingredient(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     _type = db.Column(db.String(255), unique=False, nullable=False)
-    _amount = db.Column(db.Integer, unique=False, nullable=False)
+    _amount = db.Column(db.Float, unique=False, nullable=False)
     _unit = db.Column(db.String(255), unique=False, nullable=False)
 
     # Defines a relationship between User record and Notes table, one-to-many (one user to many notes)
@@ -225,12 +225,12 @@ def initFoods():
             '''add a few 1 to 4 notes per user'''
             food = Food(rec["Name"] + "-othery", "need array fordirec") # rec["Directions"])
             for ing in rec["Ingredients"]:
-                food.ingredients.append(Ingredient(food.id, type=ing["type"], amount=int(ing["amount"]), unit=ing["unit"]))
+                food.ingredients.append(Ingredient(food.id, type=ing["type"], amount=float(ing["amount"]), unit=ing["unit"]))
             '''add user/post data to table'''
             s = food.create()
         except IntegrityError:
             '''fails with bad or duplicate data'''
-            db.session.remove()
+            db.session.remove() 
             print(f"Records exist, duplicate email, or error: {food.uid}")
             
 def loadRecipes():
