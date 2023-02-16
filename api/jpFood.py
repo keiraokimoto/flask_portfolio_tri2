@@ -63,10 +63,12 @@ class jpFoodAPI:
             iIngreds = body["ingredients"]
             iIngredsPortion = body["portions"]
             for ing in iIngreds:
-                a = ing["amount"]
+                a = float(ing["amount"])
+                print(a)
                 print(iIngredsPortion)
-                portionAmnt = a * iIngredsPortion
-                ing["amount"] = portionAmnt
+                print(0.25 * 1.6)
+                portionAmnt = a * float(iIngredsPortion)
+                ing["amount"] = float(portionAmnt)
                
                 portionReturn["ingredients"].append(ing)
             return portionReturn
