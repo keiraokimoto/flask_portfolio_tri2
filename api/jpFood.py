@@ -1,7 +1,7 @@
 from flask import Blueprint, request, jsonify
 from flask_restful import Api, Resource # used for REST API building
 import json
-from model.foods import Food, Ingredient
+from model.foods import Direction, Food, Ingredient
 from types import SimpleNamespace as Namespace
 
 jpFood_api = Blueprint('jpFood_api', __name__,
@@ -25,20 +25,26 @@ class jpFoodAPI:
                 x = ing["type"]
                 print(x)
                 ingredients.append(Ingredient( foodId, type=ing["type"], amount=int(ing["amount"]), unit=ing["unit"]))
-            
+            iDirections = body["directions"]
+            directions = []
+            for d in iDirections:
+                x = d["step"]
+                directions.append(Direction( foodId, x ))
+
             if (rec == None):
-                rec = Food(body["name"], body["directions"])
+                rec = Food(body["name"])
                 rec.ingredients = ingredients
-                rec.directions = body["directions"]
+                rec.directions = directions
                 rec.create()
                 print('Create new recipe')
             else:
                 rec.ingredients = ingredients
-                rec.directions = body["directions"]
+                rec.directions = directions
                 rec.description = body["description"]
                 rec.update()
                 print("Update existing recipe") 
             print(rec)
+            return rec.read()
             
     class _SavePortions(Resource):
         def post(self):

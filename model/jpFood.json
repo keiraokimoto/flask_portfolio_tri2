@@ -176,17 +176,58 @@
   },
     {
       "Name": "Tonkatsu",
-      "Description": "asdjosmdksd",
+      "Description": "A quick and simple dish consisting of a fried pork cutlet, that is often accompanied by lettuce or rice.",
       "Ingredients": [
         {
           "type": "salt",
+          "amount": "1",
+          "unit": "to taste"
+        },
+        {
+          "type": "pepper",
+          "amount": "1",
+          "unit": "to taste"
+        },
+        {
+          "type": "pork loin or tenderloin",
+          "amount": "4",
+          "unit": "slices"
+        },
+        {
+          "type": "flour",
+          "amount": "1",
+          "unit": "to taste"
+        },
+        {
+          "type": "eggs",
           "amount": "2",
-          "unit": "tablespoons"
+          "unit": "lightly beaten"
+        },
+        {
+          "type": "panko (bread crumbs)",
+          "amount": "2",
+          "unit": "cups"
+        },
+        {
+          "type": "vegetable oil",
+          "amount": "1",
+          "unit": "for frying"
+        },
+        {
+          "type": "napa cabbage",
+          "amount": "1",
+          "unit": "shredded"
+        },
+        {
+          "type": "tonkatsu sauce",
+          "amount": "1",
+          "unit": "to taste"
         }
       ],
       "Directions": [
-        "words",
-        "words2"
+        "Slash the fat rimming one side of the loin cutlet to keep the meat from curling when deepfried. Pound to flatten to about 1/4 inch. Salt and pepper both sides of each cutlet. Dredge each in flour, then dip into beaten eggs and press into bread crumbs to coat both sides.",
+        "Heat a large skillet with about 1/2 inch of oil until hot. Lay 1 or 2 cutlets in the hot oil. Deep-fry until golden brown, about 5 to 7 minutes, turning them once or twice. Drain the cutlets on paper towels and cut the pork into bite-size strips that can be eaten with chopsticks.",
+        "Arrange the pork on a platter lined with the shredded cabbage, and garnish with lemon wedges. Serve the sauce on the side for dipping, or pour it over the pork and cabbage."
       ]
     },
     {
@@ -194,14 +235,74 @@
       "Description": "asdjosmdksd",
       "Ingredients": [
         {
-          "type": "lemon zest",
-          "amount": "4",
-          "unit": "cups"
+          "type": "noodles",
+          "amount": "230",
+          "unit": "grams"
+        },
+        {
+          "type": "vegetable oil",
+          "amount": "2",
+          "unit": "teaspoons"
+        },
+        {
+          "type": "pork belly",
+          "amount": "100",
+          "unit": "grams"
+        },
+        {
+          "type": "onion",
+          "amount": "100",
+          "unit": "grams"
+        },
+        {
+          "type": "cabbage",
+          "amount": "100",
+          "unit": "grams"
+        },
+        {
+          "type": "carrot",
+          "amount": "60",
+          "unit": "grams"
+        },
+        {
+          "type": "Worcestershire sauce",
+          "amount": "2",
+          "unit": "tablespoons"
+        },
+        {
+          "type": "ketchup",
+          "amount": "1",
+          "unit": "tablespoons"
+        },
+        {
+          "type": "oyster sauce",
+          "amount": "1",
+          "unit": "tablespoons"
+        },
+        {
+          "type": "honey",
+          "amount": "0.5",
+          "unit": "tablespoons"
+        },
+        {
+          "type": "white pepper",
+          "amount": "0.25",
+          "unit": "teaspoon"
+        },
+        {
+          "type": "vegetable oil",
+          "amount": "1",
+          "unit": "tablespoons"
         }
       ],
       "Directions": [
-          "words",
-          "words2"
+          "Boil the noodles according to the directions on the package. When the noodles are done, drain and rinse thoroughly with cold water, using your fingers to agitate the noodles. Drain as much water off the noodles as possible by using a dropping motion with both hands and yanking up suddenly. Toss the noodles with 2 teaspoons of vegetable oil to keep the noodles from sticking together.",
+          "Prep the vegetables and make the sauce by whisking together the Worcestershire sauce, ketchup, oyster sauce, honey and white pepper in a small bowl.",
+          "Heat a large heavy-bottomed frying pan or griddle over high heat until hot. Add 1 tablespoon of oil along with the pork belly or bacon. Fry until the fat from the pork has started to render out.",
+          "Add the carrots, onions, and cabbage and stir fry using two spatulas until the vegetables are vibrant in color and starting to wilt (they don’t need to be fully cooked through yet).",
+          "Add noodles and toss with the oil in the pan. If you notice they are sticking, add some more oil directly onto the noodles.",
+          "Drizzle the sauce evenly over the noodles and continue tossing and frying until the noodles are a uniform color and you can smell the sauce starts to caramelize.",
+          "Plate the yakisoba."
       ]
     }
   ]
