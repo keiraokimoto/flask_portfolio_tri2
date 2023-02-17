@@ -122,7 +122,7 @@ class User(db.Model):
             "posts": [post.read() for post in self.posts]
         }    # CRUD update: updates user name, password, phone
     # returns self
-    def update(self, name="", uid="", password=""):
+    def update(self, name="", uid="", password="",dob=""):
         """only updates values with length"""
         if len(name) > 0:
             self.name = name
@@ -130,6 +130,8 @@ class User(db.Model):
             self.uid = uid
         if len(password) > 0:
             self.set_password(password)
+        if len(dob) > 0:
+            self.dob = dob
         db.session.commit()
         return self    # CRUD delete: remove self
     # None
@@ -145,11 +147,11 @@ def initUsers():
         db.init_app(app)
         db.create_all()
         """Tester data for table"""
-        u1 = User(name='Thomas Edison', uid='toby', password='123toby', dob=date(1847, 2, 11))
+        u1 = User(name='Thomas Edison', uid='toby', password='123toby')
         u2 = User(name='Nicholas Tesla', uid='niko', password='123niko')
         u3 = User(name='Alexander Graham Bell', uid='lex', password='123lex')
         u4 = User(name='Eli Whitney', uid='whit', password='123whit')
-        u5 = User(name='John Mortensen', uid='jm1021', dob=date(1959, 10, 21))
+        u5 = User(name='John Mortensen', uid='jm1021')
         users = [u1, u2, u3, u4, u5]
         """Builds sample user/note(s) data"""
         for user in users:
