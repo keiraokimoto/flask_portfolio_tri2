@@ -230,7 +230,6 @@ def initFoods():
     """Create database and tables"""
     db.create_all()
     
-    # TO DO: Load from Json docmument (this is only for testing)
     """Tester data for table"""
     # f1 = Food(name='Shoyu Ramen', directions='ajkddmsd')
     # f2 = Food(name='Tonkatsu', directions='hdasdjad')
