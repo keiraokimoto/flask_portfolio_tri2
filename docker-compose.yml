@@ -4,7 +4,8 @@ services:
                 image: flask_port_v1
                 build: .
                 ports:
-                        - "8091:8080"
+                        - "8091:8091"
                 volumes:
                         - ./volumes:/volumes
+                        - ./instance:/instance
                 restart: unless-stopped

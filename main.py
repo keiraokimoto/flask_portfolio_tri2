@@ -14,7 +14,8 @@ from api.covid import covid_api # Blueprint import api definition
 from api.joke import joke_api # Blueprint import api definition
 from api.user import user_api # Blueprint import api definition
 from api.jpFood import jpFood_api
-
+from flask_cors import CORS
+cors = CORS(app)
 # setup App pages
 from projects.projects import app_projects # Blueprint directory import projects definition
 
@@ -47,5 +48,4 @@ def activate_job():
 # this runs the application on the development server
 if __name__ == "__main__":
     # change name for testing
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///volumes/sqlite.db'
     app.run(debug=True, host="0.0.0.0", port="8091")
