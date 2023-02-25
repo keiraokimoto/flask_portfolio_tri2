@@ -1,10 +1,10 @@
 version: '3'
 services:
         web:
-                image: flask_port_v1
+                image: hacks_project_flask
                 build: .
                 ports:
-                        - "8091:8091"
+                        - "8091:8080"
                 volumes:
                         - ./volumes:/volumes
                         - ./instance:/instance
