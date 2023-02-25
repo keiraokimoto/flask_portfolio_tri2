@@ -13,5 +13,6 @@ env.bak/
 venv.bak/
 
 # instance data, databases
-volumes/sqlite.db
-instance/volumes/sqlite.db
+# WHY TF are we ignoring the databases??? Thats supposed to be shared information! WTF is this class FR????
+# volumes/sqlite.db
+# instance/volumes/sqlite.db
