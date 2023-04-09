@@ -14,12 +14,13 @@ These object can be used throughout project.
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})
 # Setup SQLAlchemy object and properties for the database (db)
-dbURI = 'sqlite:///volumes/sqlite.db'
+dbURI = 'sqlite:///sqlite.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_DATABASE_URI'] = dbURI
 app.config['SECRET_KEY'] = 'SECRET_KEY'
 db = SQLAlchemy()
 Migrate(app, db)
+db.init_app(app)
 
 # Images storage
 app.config['MAX_CONTENT_LENGTH'] = 5 * 1024 * 1024  # maximum size of uploaded content
